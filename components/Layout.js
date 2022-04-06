@@ -40,7 +40,7 @@ const Layout = ({ title, children }) => {
               isMenuOpen && 'p-2 border-l-8 border-orange-600 rounded'
             }`}
           >
-            <Icon size='2em' />
+            <Icon size='1.5em' />
             {isMenuOpen && (
               <div className='my-auto flex-grow font-bold capitalize'>
                 {title}
@@ -65,7 +65,7 @@ const Layout = ({ title, children }) => {
         <div onClick={menuHandler} className='flex justify-between'>
           <CgMenuGridR size='2.5em' className='text-white' />
         </div>
-        <div className='pt-5'>
+        <div className='pt-5 px-1'>
           <div className='my-2'>
             <Image src={Logo} alt='logo amigos' />
           </div>
