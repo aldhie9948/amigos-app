@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  @apply sm:w-6/12 mx-auto w-full 
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-slate-500
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-orange-500
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.rdt_Table {
+  @apply border border-green-500 capitalize whitespace-nowrap;
+
+}
+
+
+
