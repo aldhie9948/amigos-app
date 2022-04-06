@@ -56,6 +56,7 @@ const Dashboard = () => {
       isActive: true,
       start,
       end: 0,
+      price: 0,
     };
     dispatch(playUnit(update));
   };
@@ -74,7 +75,6 @@ const Dashboard = () => {
         price,
         end,
       };
-
       dispatch(playUnit(update));
     });
   };
@@ -256,7 +256,11 @@ const Dashboard = () => {
     );
 
     const proccessPaymentHandler = () => {
-      const update = { ...selectedKonsol, isActive: false };
+      const update = {
+        ...selectedKonsol,
+        isActive: false,
+        price: Number(price),
+      };
       const payment = {
         item: update,
         qty: 1,
