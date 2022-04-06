@@ -259,10 +259,12 @@ const Dashboard = () => {
       const update = {
         ...selectedKonsol,
         isActive: false,
-        price: Number(price),
+        price: 0,
+        start: 0,
+        end: 0,
       };
       const payment = {
-        item: update,
+        item: { ...update, price: Number(price) },
         qty: 1,
         total: price,
         type: 'rental',
