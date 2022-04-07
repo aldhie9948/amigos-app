@@ -85,7 +85,7 @@ const Layout = ({ title, children }) => {
       <nav className='p-4 shadow-lg bg-orange-400 text-right text-white fixed top-0 left-0 right-0 z-20 font-bold'>
         Amigos Playstation Danawarih <sup>©</sup>
       </nav>
-      <div className='pl-[3em] pt-[3em] relative'>
+      <div className='pl-[3em] pt-[4em] relative'>
         <div className='p-2'>{children}</div>
       </div>
     </div>
