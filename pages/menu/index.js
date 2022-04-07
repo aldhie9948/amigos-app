@@ -186,7 +186,7 @@ const Makanan = () => {
                   <MdPlaylistAddCheck className='my-auto text-[1.3em]' />
                   <select
                     {...tipeMenu.attr}
-                    className='w-full outline-none p-1'
+                    className='w-full outline-none p-1 bg-white text-black'
                   >
                     <option value='' hidden selected disabled>
                       Tipe menu

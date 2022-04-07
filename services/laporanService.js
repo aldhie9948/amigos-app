@@ -1,8 +1,13 @@
-import axios from "axios";
-const baseURL = "/api/laporan";
+import axios from 'axios';
+const baseURL = '/api/laporan';
 
 const get = async () => {
   const response = await axios.get(baseURL);
+  return response.data;
+};
+
+const today = async () => {
+  const response = await axios.get(`${baseURL}/today`);
   return response.data;
 };
 
@@ -22,4 +27,4 @@ const remove = async (id) => {
 };
 
 // eslint-disable-next-line
-export default { get, save, update, remove };
+export default { get, save, update, remove, today };

@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Layout from '../../components/Layout';
 import { initKonsol, playUnit } from '../../reducers/konsolReducer';
-import { SiPlaystation3, SiPlaystation4 } from 'react-icons/si';
+import { SiPlaystation3, SiPlaystation4, SiPlaystation } from 'react-icons/si';
 import { AiOutlinePlayCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import { BsStopCircle } from 'react-icons/bs';
 import sweetalert from '../../lib/sweetalert';
@@ -12,7 +12,7 @@ import IDLocale from 'date-fns/locale/id';
 import { MdFastfood, MdPriceCheck } from 'react-icons/md';
 import { initMenuList } from '../../reducers/menuReducer';
 import { useField } from '../../hooks';
-import { saveLaporan } from '../../reducers/laporanReducer';
+import { laporanToday, saveLaporan } from '../../reducers/laporanReducer';
 import Modal from '../../components/Modal';
 import Image from 'next/image';
 import Logo from '../../assets/img/logo.png';
@@ -39,11 +39,13 @@ const Dashboard = () => {
   const [showModalsPayment, setShowModalsPayment] = useState(false);
   const konsol = useSelector((state) => state.konsol);
   const menu = useSelector((state) => state.menu);
+  const laporan = useSelector((state) => state.laporan);
   const [selectedKonsol, setSelectedKonsol] = useState(null);
 
   useEffect(() => {
     dispatch(initKonsol());
     dispatch(initMenuList());
+    dispatch(laporanToday());
     //  eslint-disable-next-line
   }, []);
 
@@ -216,7 +218,7 @@ const Dashboard = () => {
             <MdFastfood className='my-auto' />
             <select
               {...selectedItem.attr}
-              className='block rounded text-black flex-grow  outline-none capitalize'
+              className='block rounded text-black flex-grow  outline-none capitalize bg-white'
             >
               <option value='' hidden selected disabled>
                 Pilih menu...
@@ -344,8 +346,37 @@ const Dashboard = () => {
     );
   };
 
+  const EarningsToday = () => {
+    const rental = laporan.filter((f) => f.type === 'rental');
+    const rentalReduce = rental.reduce((a, b) => a + b.total, 0);
+    const produk = laporan.filter((f) => f.type === 'produk');
+    const produkReduce = laporan.reduce((a, b) => a + b.total, 0);
+
+    return (
+      <div className='grid grid-cols-2 gap-2 my-2 p-2'>
+        <div className='bg-blue-50 text-blue-500 rounded shadow p-2'>
+          <SiPlaystation className='mx-auto' size='3em' />
+          <div className='font-bold text-sm text-center'>Rental Hari Ini</div>
+          <div className='font-bold text-2xl text-center'>
+            Rp. {rentalReduce.toLocaleString()}
+          </div>
+        </div>
+        <div className='bg-green-50 text-green-500 rounded shadow p-2'>
+          <MdFastfood className='mx-auto' size='3em' />
+          <div className='font-bold text-sm text-center'>
+            Penjualan Hari Ini
+          </div>
+          <div className='font-bold text-2xl text-center'>
+            Rp. {produkReduce.toLocaleString()}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <Layout title='Dashboard'>
+      <EarningsToday />
       <Pembelian menu={menu} />
       <div className='grid grid-cols-2 gap-2'>
         {konsol &&

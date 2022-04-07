@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import laporanService from "../services/laporanService";
+import { createSlice } from '@reduxjs/toolkit';
+import laporanService from '../services/laporanService';
 
 const laporanSlice = createSlice({
-  name: "laporan",
+  name: 'laporan',
   initialState: [],
   reducers: {
     setLaporan: (state, action) => {
@@ -20,6 +20,13 @@ export const { setLaporan, addLaporan } = laporanSlice.actions;
 export const initLaporan = () => {
   return async (dispatch) => {
     const res = await laporanService.get();
+    dispatch(setLaporan(res));
+  };
+};
+
+export const laporanToday = () => {
+  return async (dispatch) => {
+    const res = await laporanService.today();
     dispatch(setLaporan(res));
   };
 };
