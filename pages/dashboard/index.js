@@ -353,7 +353,7 @@ const Dashboard = () => {
     const produkReduce = laporan.reduce((a, b) => a + b.total, 0);
 
     return (
-      <div className='grid grid-cols-2 gap-2 my-1'>
+      <div className='grid grid-cols-2 gap-2 mb-6'>
         <div className='bg-blue-50 text-blue-500 rounded shadow p-2'>
           <SiPlaystation className='mx-auto' size='3em' />
           <div className='font-bold text-sm text-center'>Rental Hari Ini</div>
