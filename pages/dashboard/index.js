@@ -348,9 +348,9 @@ const Dashboard = () => {
 
   const EarningsToday = () => {
     const rental = laporan.filter((f) => f.type === 'rental');
-    const rentalReduce = rental.reduce((a, b) => a + b.total, 0);
     const produk = laporan.filter((f) => f.type === 'produk');
-    const produkReduce = laporan.reduce((a, b) => a + b.total, 0);
+    const rentalReduce = rental.reduce((a, b) => a + b.total, 0);
+    const produkReduce = produk.reduce((a, b) => a + b.total, 0);
 
     return (
       <div className='grid grid-cols-2 gap-2 mb-6'>
